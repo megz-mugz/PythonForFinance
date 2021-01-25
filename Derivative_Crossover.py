@@ -1,7 +1,7 @@
 # this is a properitary trading indicator that I developed
 # it takes the derivative of a simple moving average, and
 # then two moving averages of the given derivative. 
-# this can be used to spot reversals as well as 
+# this can be used to spot reversals. 
 
 import sympy as sym
 import datetime as dt
