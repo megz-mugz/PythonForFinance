@@ -1,3 +1,8 @@
+# this is a properitary trading indicator that I developed
+# it takes the derivative of a simple moving average, and
+# then two moving averages of the given derivative. 
+# this can be used to spot reversals as well as 
+
 import sympy as sym
 import datetime as dt
 import pandas_datareader as web
@@ -10,8 +15,6 @@ start = dt.datetime(2018, 5, 1)
 end = dt.datetime.now()
 
 df = web.DataReader(ticker, 'yahoo', start, end)
-
-df['Volatility'] = (df['Adj Close'] - df['Open']) / df['Open']
 
 df['90sma'] = df['Adj Close'].rolling(window=20).mean()
 df['20sma'] = df['Adj Close'].rolling(window=20).mean()
