@@ -5,7 +5,6 @@ start = dt.datetime(2010, 2, 12)
 now = dt.datetime.now()
 
 # gets data for tq and sq
-nq = web.DataReader('nq=f', 'yahoo',  start, now)
 tq = web.DataReader('tqqq', 'yahoo', start, now)
 sq = web.DataReader('sqqq', 'yahoo', start, now)
 
