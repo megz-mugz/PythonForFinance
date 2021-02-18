@@ -1,0 +1,42 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import style
+import seaborn as sns
+
+style.use('dark_background')
+
+mu, sigma = 87, 4.3
+x_data = mu + sigma * np.random.randn(10000)
+
+
+class histplots:
+
+    global x_data, mu, sigma
+
+    @staticmethod
+    def usingMPL():
+        plt.figure(1)
+
+        plt.hist(x_data, 100, density=True)
+
+        plt.xlabel('Test Scores')
+        plt.ylabel('Percentage of Students')
+        plt.title('Test Scores of Students (mpl)')
+
+    @staticmethod
+    def usingSNS():
+        plt.figure(2)
+
+        sns.histplot(x_data, kde=True)
+
+        plt.title('Test Scores of Students (sns)')
+        plt.xlabel('Test Scores')
+        plt.ylabel('Amount of Students')
+
+        plt.show()
+
+object = histplots
+
+object.usingMPL()
+object.usingSNS()
+print('done')
