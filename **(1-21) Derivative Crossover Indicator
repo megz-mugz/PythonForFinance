@@ -24,8 +24,9 @@ df['20sma'] = df['Adj Close'].rolling(window=20).mean()
 df['10sma'] = df['Adj Close'].rolling(window=10).mean()
 
 class DataVisualization:
-
-    def mpl(self):
+    
+    @staticmethod
+    def mpl():
         # subplots
         fig, ax = plt.subplots(nrows=2, ncols=1, sharex=True, figsize=(12, 10), gridspec_kw={'height_ratios': [1.5, 1]})
         dv = ax[1]
