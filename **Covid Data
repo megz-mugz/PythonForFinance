@@ -1,0 +1,88 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import datetime as dt
+from matplotlib import style
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+import numpy as np
+style.use('fivethirtyeight')
+
+cases = pd.read_csv('confirmed_cases.csv').drop(['Province/State', 'Lat', 'Long', 'Country'], axis=1)
+deaths = pd.read_csv('deaths.csv').drop(['Province/State', 'Lat', 'Long', 'Country'], axis=1)
+
+
+class CovidData:
+    global cases, deaths
+
+    @staticmethod
+    def majorCountries():
+        # countries
+        usa = cases.loc[249]
+        canada = cases.loc[49]
+        brazil = cases.loc[49]
+        france = cases.loc[129]
+        india = cases.loc[146]
+        japan = cases.loc[154]
+        south_korea = cases.loc[158]
+        uk = cases.loc[263]
+
+        # cases
+        usa_values = usa.values
+        canada_values = canada.values
+        brazil_values = brazil.values
+        france_values = france.values
+        india_values = india.values
+        japan_values = japan.values
+        south_korea_values = south_korea.values
+        uk_values = uk.values
+
+        dates = [dt.datetime(2020, 1, 22) + dt.timedelta(days=i) for i in range(len(usa))]
+
+        plt.plot(dates, usa_values, label='USA')
+        plt.plot(dates, canada_values, label='Canada')
+        plt.plot(dates, brazil_values, label='Brazil')
+        plt.plot(dates, france_values, label='France')
+        plt.plot(dates, india_values, label='India')
+        plt.plot(dates, japan_values, label='Japan')
+        plt.plot(dates, south_korea_values, label='South Korea')
+        plt.plot(dates, uk_values, label='UK')
+
+
+        plt.legend(loc='best')
+        plt.xlabel('Dates')
+        plt.ylabel('Confirmed Cases (in millions)')
+        plt.title('Covid Cases Major Countries')
+
+        plt.show()
+
+
+    @staticmethod
+    def LinearRegressionAlgo():
+        usa_cases = cases.loc[249]
+        usa_deaths = deaths.loc[249]
+
+
+        X_train, X_test, y_train, y_test = train_test_split(usa_cases, usa_deaths, train_size=0.5)
+
+        model = LinearRegression()
+
+        # fit data
+        model.fit(np.array(X_test).reshape(-1, 1),
+                  np.array(y_train).reshape(-1, 1))
+
+        # accuracy
+        print('Accuracy:', model.score(np.array(X_test).reshape(-1, 1),
+                          np.array(y_test).reshape(-1, 1)))
+
+        # prediction
+        user_prediction = int(input('enter amount of cases'))
+        print(model.predict(np.array(user_prediction).reshape(-1, 1)))
+        predictions = model.predict(np.array(X_test).reshape(-1,1))
+
+        plt.scatter(np.array(y_test).reshape(-1,1), np.array(predictions).reshape(-1,1))
+
+        plt.show()
+
+object = CovidData
+object.majorCountries()
+object.LinearRegressionAlgo()
