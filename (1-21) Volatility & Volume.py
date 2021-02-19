@@ -14,10 +14,10 @@ df = web.DataReader(ticker, 'yahoo', start, now)
 
 df['Volitility'] = abs((df['Adj Close'] - df['Open']) / df['Open'])
 
-x = df['Volitility']
+x = df['Volatility']
 y = df['Volume']
 
-sns.jointplot(x='Volitility', y='Volume', data=df, color='red', kind='scatter')
+sns.jointplot(x='Volatility', y='Volume', data=df, color='red', kind='scatter')
 
 
 plt.show()
