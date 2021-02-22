@@ -1,0 +1,43 @@
+# find what numbers appear consecutively, and how many
+# times they appear consecutively
+# ex. #89 should return 3 but #1 should return 2
+# [89, 89, 89, 89, 89, 76, 54, 34, 986, 75, 1, 0, 1, 1]
+import random
+nums = []
+appears_consec = []
+
+class ConsecutiveNumbers:
+
+    @staticmethod
+    def selecting_nums():
+        global nums
+        user = input('would you like preset or random data?')
+
+        if user.lower() == 'preset':
+            nums = [89, 89, 89, 89, 89, 76, 54, 34, 986, 75, 1, 0, 1, 1]
+        else:
+            for i in range(101):
+                r = random.randint(0, 15)
+                nums.append(r)
+        print(nums)
+
+    @staticmethod
+    def consecFinder():
+        for i in range(len(nums)):
+            if i == len(nums) - 1:
+                continue
+            elif nums[i] == nums[i+1]:
+                appears_consec.append(nums[i])
+
+    @staticmethod
+    def consecQtyFinder():
+        unique_nums = list(set(appears_consec))
+
+        for i in range(len(unique_nums)):
+            qty = appears_consec.count(unique_nums[i])
+            print('{} occurs consecutively {} times'.format(unique_nums[i], qty))
+
+x = ConsecutiveNumbers
+ConsecutiveNumbers.selecting_nums()
+ConsecutiveNumbers.consecFinder()
+ConsecutiveNumbers.consecQtyFinder()
