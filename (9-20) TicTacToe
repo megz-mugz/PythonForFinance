@@ -1,0 +1,322 @@
+import numpy as np
+
+def TicTacToe():
+    # generate board
+    positions = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    board = np.array(positions).reshape(3, 3)
+
+    # player names
+    player_one = input('Player #1, what is your name?')
+    player_two = input('Player #2, what is your name?')
+
+    # Xs or Os
+    player_two_symbol = input("{}, do you want X's or O's?".format(player_two)).upper()
+    player_one_symbol = input("{}, do you want X's or O's?".format(player_one)).upper()
+
+
+    player_one_turn = 0
+    player_two_turn = 0
+    win = 0
+    quit_program = 0
+
+
+    # Actual TicTacToe Game
+    for i in range(len(positions)+1):
+
+        # player 1 turn
+        if player_one_turn == 0 and player_two_turn == 0 and win == 0 and quit_program == 0:
+            # player one's turn
+            player_one_turn = 1
+            player_two_turn = 0
+
+            # prints current board
+            print('current board:')
+            print(board)
+
+            # asks player one to make move
+            move = int(input('{} where would you like to place your {}?'.format(player_one, player_one_symbol.upper())))
+
+            # makes modifications to list
+            positions.remove(move)
+            positions.insert(move-1, player_one_symbol)
+
+            # generates and prints the current board
+            board = np.array(positions).reshape(3, 3)
+            print(board)
+
+
+        # player 2 turn
+        elif player_one_turn == 1 and player_two_turn == 0 and win == 0 and quit_program == 0:
+
+            if i >= 5:
+                pos_one = str(positions[0])
+                pos_two = str(positions[1])
+                pos_three = str(positions[2])
+                pos_four = str(positions[3])
+                pos_five = str(positions[4])
+                pos_six = str(positions[5])
+                pos_seven = str(positions[6])
+                pos_eight = str(positions[7])
+                pos_nine = str(positions[8])
+
+                # horizontal
+                if pos_one == 'X' and pos_two == 'X' and pos_three == 'X':
+                    win = 1
+                elif pos_four == 'X' and pos_five == 'X' and pos_six == 'X':
+                    win = 1
+                elif pos_seven == 'X' and pos_eight == 'X' and pos_nine == 'X':
+                    win = 1
+
+                # vertical
+                elif pos_one == 'X' and pos_four == 'X' and pos_seven == 'X':
+                    win = 1
+                elif pos_two == 'X' and pos_five == 'X' and pos_eight == 'X':
+                    win = 1
+                elif pos_three == 'X' and pos_six == 'X' and pos_nine == 'X':
+                    win = 1
+
+                # diagonal
+                elif pos_one == 'X' and pos_five == 'X' and pos_nine == 'X':
+                    win = 1
+                elif pos_three == 'X' and pos_five == 'X' and pos_seven == 'X':
+                    win = 1
+
+                # horizontal O
+                if pos_one == 'O' and pos_two == 'O' and pos_three == 'O':
+                    win = 1
+                elif pos_four == 'O' and pos_five == 'O' and pos_six == 'O':
+                    win = 1
+                elif pos_seven == 'O' and pos_eight == 'O' and pos_nine == 'O':
+                    win = 1
+
+                # vertical O
+                elif pos_one == 'O' and pos_four == 'O' and pos_seven == 'O':
+                    win = 1
+                elif pos_two == 'O' and pos_five == 'O' and pos_eight == 'O':
+                    win = 1
+                elif pos_three == 'O' and pos_six == 'O' and pos_nine == 'O':
+                    win = 1
+
+                # diagonal O
+                elif pos_one == 'O' and pos_five == 'O' and pos_nine == 'O':
+                    win = 1
+                elif pos_three == 'O' and pos_five == 'O' and pos_seven == 'O':
+                    win = 1
+
+
+                elif win == 0:
+                    # player two's turn
+                    player_one_turn = 0
+                    player_two_turn = 1
+
+                    # asks player one to make move
+                    move = int(input('{} where would you like to place your {}?'.format(player_two, player_two_symbol)))
+
+                    # makes modifications to list
+                    positions.remove(move)
+                    positions.insert(move - 1, player_two_symbol)
+
+                    # generates and prints the current board
+                    board = np.array(positions).reshape(3, 3)
+                    print(board)
+
+            else:
+                # player two's turn
+                player_one_turn = 0
+                player_two_turn = 1
+
+                # asks player one to make move
+                move = int(input('{} where would you like to place your {}?'.format(player_two, player_two_symbol)))
+
+                # makes modifications to list
+                positions.remove(move)
+                positions.insert(move - 1, player_two_symbol)
+
+                # generates and prints the current board
+                board = np.array(positions).reshape(3, 3)
+                print(board)
+
+
+        # back to player 1 turn
+        elif player_one_turn == 0 and player_two_turn == 1 and win == 0 and quit_program == 0:
+
+            if i >= 5:
+                pos_one = str(positions[0])
+                pos_two = str(positions[1])
+                pos_three = str(positions[2])
+                pos_four = str(positions[3])
+                pos_five = str(positions[4])
+                pos_six = str(positions[5])
+                pos_seven = str(positions[6])
+                pos_eight = str(positions[7])
+                pos_nine = str(positions[8])
+
+                # horizontal
+                if pos_one == 'X' and pos_two == 'X' and pos_three == 'X':
+                    win = 1
+                elif pos_four == 'X' and pos_five == 'X' and pos_six == 'X':
+                    win = 1
+                elif pos_seven == 'X' and pos_eight == 'X' and pos_nine == 'X':
+                    win = 1
+
+                # vertical
+                elif pos_one == 'X' and pos_four == 'X' and pos_seven == 'X':
+                    win = 1
+                elif pos_two == 'X' and pos_five == 'X' and pos_eight == 'X':
+                    win = 1
+                elif pos_three == 'X' and pos_six == 'X' and pos_nine == 'X':
+                    win = 1
+
+                # diagonal
+                elif pos_one == 'X' and pos_five == 'X' and pos_nine == 'X':
+                    win = 1
+                elif pos_three == 'X' and pos_five == 'X' and pos_seven == 'X':
+                    win = 1
+
+                # horizontal O
+                if pos_one == 'O' and pos_two == 'O' and pos_three == 'O':
+                    win = 1
+                elif pos_four == 'O' and pos_five == 'O' and pos_six == 'O':
+                    win = 1
+                elif pos_seven == 'O' and pos_eight == 'O' and pos_nine == 'O':
+                    win = 1
+
+                # vertical O
+                elif pos_one == 'O' and pos_four == 'O' and pos_seven == 'O':
+                    win = 1
+                elif pos_two == 'O' and pos_five == 'O' and pos_eight == 'O':
+                    win = 1
+                elif pos_three == 'O' and pos_six == 'O' and pos_nine == 'O':
+                    win = 1
+
+                # diagonal O
+                elif pos_one == 'O' and pos_five == 'O' and pos_nine == 'O':
+                    win = 1
+                elif pos_three == 'O' and pos_five == 'O' and pos_seven == 'O':
+                    win = 1
+
+                elif win == 0:
+                    # player one's turn
+                    player_one_turn = 1
+                    player_two_turn = 0
+
+                    # asks player one to make move
+                    move = int(input('{} where would you like to place your {}?'.format(player_one, player_one_symbol)))
+
+                    # makes modifications to list
+                    positions.remove(move)
+                    positions.insert(move - 1, player_one_symbol)
+
+                    # generates and prints the current board
+                    board = np.array(positions).reshape(3, 3)
+                    print(board)
+
+
+            elif player_one_turn == 0 and player_two_turn == 1:
+                # player one's turn
+                player_one_turn = 1
+                player_two_turn = 0
+
+                # prints current board
+                print('current board:')
+                print(board)
+
+                # asks player one to make move
+                move = int(input('{} where would you like to place your {}?'.format(player_one, player_one_symbol.upper())))
+
+                # makes modifications to list
+                positions.remove(move)
+                positions.insert(move-1, player_one_symbol)
+
+                # generates and prints the current board
+                board = np.array(positions).reshape(3, 3)
+                print(board)
+
+
+        # player one won
+        elif player_one_turn == 1 and player_two_turn == 0 and win == 1 and quit_program == 0:
+            print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+            quit_program = 1
+
+        # player two won
+        elif player_one_turn == 0 and player_two_turn == 1 and win == 1 and quit_program == 0:
+            print('CONGRATS {} YOU WON!!!!'.format(player_two))
+            quit_program = 1
+
+        # declares a winner on the last move
+        elif i == 8 and player_one_turn == 1 and player_two_turn == 0:
+            pos_one = str(positions[0])
+            pos_two = str(positions[1])
+            pos_three = str(positions[2])
+            pos_four = str(positions[3])
+            pos_five = str(positions[4])
+            pos_six = str(positions[5])
+            pos_seven = str(positions[6])
+            pos_eight = str(positions[7])
+            pos_nine = str(positions[8])
+
+            # horizontal
+            if pos_one == 'X' and pos_two == 'X' and pos_three == 'X':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+            elif pos_four == 'X' and pos_five == 'X' and pos_six == 'X':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+            elif pos_seven == 'X' and pos_eight == 'X' and pos_nine == 'X':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+
+            # vertical
+            elif pos_one == 'X' and pos_four == 'X' and pos_seven == 'X':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+            elif pos_two == 'X' and pos_five == 'X' and pos_eight == 'X':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+            elif pos_three == 'X' and pos_six == 'X' and pos_nine == 'X':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+
+            # diagonal
+            elif pos_one == 'X' and pos_five == 'X' and pos_nine == 'X':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+            elif pos_three == 'X' and pos_five == 'X' and pos_seven == 'X':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+
+            # horizontal O
+            if pos_one == 'O' and pos_two == 'O' and pos_three == 'O':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+            elif pos_four == 'O' and pos_five == 'O' and pos_six == 'O':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+            elif pos_seven == 'O' and pos_eight == 'O' and pos_nine == 'O':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+
+            # vertical O
+            elif pos_one == 'O' and pos_four == 'O' and pos_seven == 'O':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+            elif pos_two == 'O' and pos_five == 'O' and pos_eight == 'O':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+            elif pos_three == 'O' and pos_six == 'O' and pos_nine == 'O':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+
+            # diagonal O
+            elif pos_one == 'O' and pos_five == 'O' and pos_nine == 'O':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+            elif pos_three == 'O' and pos_five == 'O' and pos_seven == 'O':
+                win = 1
+                print('CONGRATS {} YOU WON!!!!.'.format(player_one))
+
+
+        elif i >= 8 and win == 0:
+            print('Nobody won :(')
+
+TicTacToe()
